@@ -6,6 +6,7 @@ import org.glassfish.jersey.server.ServerProperties;
 import org.glassfish.jersey.servlet.ServletProperties;
 import org.springframework.stereotype.Component;
 
+import com.jiayu.gamana.report.ReportResource;
 import com.jiayu.gamana.user.UserResource;
 
 import ch.qos.logback.core.net.SocketConnector.ExceptionHandler;
@@ -30,5 +31,6 @@ public class JerseyConfig extends ResourceConfig {
 	 */
 	private void registerAPIResources() {
 		register(UserResource.class);
+		register(ReportResource.class);
 	}
 }

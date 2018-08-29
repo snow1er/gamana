@@ -23,7 +23,7 @@ import com.jiayu.gamana.user.service.UserService;
  * @author Neo.Li
  */
 @Component
-@Path("/")
+@Path("/users")
 @Consumes({MediaType.APPLICATION_JSON})
 @Produces({MediaType.APPLICATION_JSON})
 public class UserResource {
@@ -32,13 +32,13 @@ public class UserResource {
     private UserService userService;
 	
 	@POST
-    @Path("/users/register")
+    @Path("/register")
     public UserResponseDTO registerUser(@Valid UserBaseDTO user) {
 		return userService.createUser(user);
     }
 	
 	@GET
-    @Path("/users/{id}")
+    @Path("/{id}")
     public UserResponseDTO getUser(@PathParam("id") String userId) {
 		return userService.getByUserId(UUID.fromString(userId));
     }
