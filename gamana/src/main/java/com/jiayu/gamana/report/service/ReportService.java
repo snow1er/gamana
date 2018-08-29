@@ -9,5 +9,7 @@ import java.util.Map;
  */
 public interface ReportService {
 
-	Map<String, List<?>> getReportData(String platform, String reportName, String appid, Map<String, String> conditions, int isCache);
+	Map<String, List<?>> getReportData(String platform, String reportName, String appid, Map<String, String> queryParameter, int isCache);
+
+	String generateSql(String appid, String name, String platform, Map<String, String> queryParameter);
 }
