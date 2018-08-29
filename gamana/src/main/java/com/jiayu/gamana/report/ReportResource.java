@@ -50,7 +50,7 @@ public class ReportResource {
 	
 	/**
 	 * generate sql
-	 * URL like : http://localhost:8080/api/report/track/active/sql?startdate=2018-01-01&enddate=2018-12-01&datatype=list
+	 * URL like : http://localhost:8080/api/report/track/active/7777777/sql?startdate=2018-01-01&enddate=2018-12-01&datatype=list
 	 * @param platform
 	 * @param name
 	 * @param appid
