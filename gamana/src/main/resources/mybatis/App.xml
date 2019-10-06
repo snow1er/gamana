@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.jiayu.gamana.resource.dao.AppMapper">
+    <select id="findUserById" resultType="com.jiayu.gamana.resource.dto.App" parameterType="long">
+        select * from app where id=#{id}
+    </select>
+
+    <select id="findAppByCreateuser" resultType="com.jiayu.gamana.resource.dto.App" parameterType="long">
+        select * from app where createuser=#{createuser}
+    </select>
+
+    <select id="findAppByname" resultType="com.jiayu.gamana.resource.dto.App" parameterType="String">
+        select * from app where appname=#{appname}
+    </select>
+
+    <select id="findAppByAppidId" resultType="com.jiayu.gamana.resource.dto.App" parameterType="String">
+        select * from app where appid=#{appid}
+    </select>
+
+    <!--插入  -->
+    <insert id="insertApp" useGeneratedKeys="true" keyProperty="id" parameterType="com.jiayu.gamana.resource.dto.App" >
+        insert into app
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="createuser != null" >
+                createuser,
+            </if>
+            <if test="appname != null" >
+                appname,
+            </if>
+            <if test="appid != null" >
+                appid,
+            </if>
+            <if test="newtime != null" >
+                newtime,
+            </if>
+            <if test="edittime != null" >
+                edittime,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="createuser != null" >
+                #{createuser,jdbcType=BIGINT},
+            </if>
+            <if test="appname != null" >
+                #{appname,jdbcType=VARCHAR},
+            </if>
+            <if test="appid != null" >
+                #{appid,jdbcType=VARCHAR},
+            </if>
+            <if test="newtime != null" >
+                #{newtime,jdbcType=VARCHAR},
+            </if>
+            <if test="edittime != null" >
+                #{edittime,jdbcType=VARCHAR},
+            </if>
+
+        </trim>
+    </insert>
+
+    <select id="selectAllApp" resultType="com.jiayu.gamana.resource.dto.App">
+      select *  from app
+    </select>
+
+
+    <!--修改  -->
+    <update id="updateByAppId" parameterType="com.jiayu.gamana.resource.dto.App" >
+        update app
+        <set >
+            <if test="appname != null" >
+                appname = #{appname,jdbcType=VARCHAR},
+            </if>
+            <if test="edittime != null" >
+                edittime = #{edittime,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where appid = #{appid,jdbcType=VARCHAR}
+    </update>
+
+
+    <!--删除  -->
+    <delete id="deleteByAppId" parameterType="String" >
+        delete from app
+        where appid = #{appid,jdbcType=VARCHAR}
+    </delete>
+
+</mapper>

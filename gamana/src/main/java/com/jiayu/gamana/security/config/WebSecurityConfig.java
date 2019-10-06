@@ -83,7 +83,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .and()
             .authorizeRequests()
             .antMatchers(AUTHENTICATE_REGISTER_PATH).permitAll()
-            .antMatchers("/**").authenticated()//.permitAll()
+            .antMatchers("/**").permitAll()//.authenticated()
             .and()
             .addFilterBefore(preAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
             .addFilterBefore(postAuthenticationFilter(),UsernamePasswordAuthenticationFilter.class);

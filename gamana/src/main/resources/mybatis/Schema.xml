@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.jiayu.gamana.resource.dao.SchemaMapper">
+
+    <select id="findByAppid" resultType="com.jiayu.gamana.resource.dto.Schema" parameterType="String">
+        select * from schema_ctl where appid=#{appid}
+    </select>
+
+    <select id="findByAppidXwhat" resultType="com.jiayu.gamana.resource.dto.Schema" parameterType="Map">
+        select * from schema_ctl where appid=#{appid} and xwhat=#{xwhat}
+    </select>
+
+    <select id="findAppid" resultType="String" parameterType="String">
+        select distinct appid from schema_ctl
+    </select>
+
+    <select id="findTableApp" resultType="com.jiayu.gamana.resource.dto.App" parameterType="String">
+        select b.*
+        from (select appid from schema_ctl group by appid) a join app b
+        on a.appid=b.appid
+
+    </select>
+
+    <select id="findXwhatByAppid" resultType="String" parameterType="String">
+        select distinct xwhat from schema_ctl where appid=#{appid}
+    </select>
+
+    <select id="findFieldByAppid" resultType="String" parameterType="String">
+        select `schema` from schema_ctl where appid=#{appid}
+    </select>
+
+    <select id="findEventMapByAppid" resultType="com.jiayu.gamana.resource.dto.Event" parameterType="String">
+        select * from event where appid=#{appid}
+    </select>
+
+    <select id="findFieldMapByAppid" resultType="com.jiayu.gamana.resource.dto.Field" parameterType="String">
+        select * from `field` where appid=#{appid}
+    </select>
+</mapper>

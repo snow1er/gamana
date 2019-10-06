@@ -2,6 +2,7 @@ package com.jiayu.gamana.security.provider;
 
 import java.util.UUID;
 
+import com.jiayu.gamana.resource.dto.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -11,8 +12,7 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.stereotype.Component;
 
 import com.jiayu.gamana.security.dto.AuthContext;
-import com.jiayu.gamana.user.dto.UserResponseDTO;
-import com.jiayu.gamana.user.service.UserService;
+import com.jiayu.gamana.resource.service.UserService;
 
 /**
  * auth for username and password
@@ -32,8 +32,8 @@ public class PreAuthenticationProvider implements AuthenticationProvider {
 		String username = (String) authentication.getPrincipal();
         String password = (String) authentication.getCredentials();
         try {
-        	UserResponseDTO user = userService.login(username, password);
-        	return new UsernamePasswordAuthenticationToken(new AuthContext(user.getUserId(), user.getUsername(), UUID.randomUUID().toString()), null, null);
+        	User user = userService.login(username, password);
+        	return new UsernamePasswordAuthenticationToken(new AuthContext(UUID.fromString(user.getUuid()), user.getUsername(), user.getUuid()), null, null);
         }catch(Exception e) {
         	throw new BadCredentialsException("Authentication Failed. Username or Password not valid.");
         }
