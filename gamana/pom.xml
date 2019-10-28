@@ -22,21 +22,6 @@
       <hadoop.version>3.1.1.${hdp.version}</hadoop.version>
       <hive.version>3.1.0.${hdp.version}</hive.version>
   </properties>
-    <repositories>
-        <repository>
-            <id>public</id>
-            <url>http://repo.hortonworks.com/content/groups/public</url>
-        </repository>
-        <repository>
-            <id>cloudera-repo-releases</id>
-            <url>http://repo.hortonworks.com/content/repositories/releases/</url>
-        </repository>
-        <repository>
-            <id>artima</id>
-            <name>Artima Maven Repository</name>
-            <url>http://repo.artima.com/releases</url>
-        </repository>
-    </repositories>
 
 
     <profiles>
@@ -45,15 +30,6 @@
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
-            <properties>
-                <label>dev</label>
-
-                <hive.driver>org.apache.hive.jdbc.HiveDriver</hive.driver>
-                <hive.url>jdbc:hive2://alybjf-hdp-master-v01.dns.rightpaddle.com:2181,alybjf-hdp-master-v02.dns.rightpaddle.com:2181,alybjf-hdp-datanode-v01.dns.rightpaddle.com:2181/;serviceDiscoveryMode=zooKeeper;zooKeeperNamespace=hiveserver2?tez.queue.name=bigdat</hive.url>
-                <hive.username>hive</hive.username>
-                <hive.pass>hive</hive.pass>
-
-            </properties>
         </profile>
     </profiles>
 
